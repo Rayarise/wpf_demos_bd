@@ -7,8 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="300" Width="800">
     <DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+             
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Liste des clients            " Grid.Column="0" Grid.Row="0"/>
+
+            <ListView Grid.Row="1" ItemsSource="{Binding Contacts}"
+                          SelectedItem="{Binding SelectedContact}"
+                          x:Name="lvContact" Height="260px">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Info}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        
     <Grid>
         <Grid.ColumnDefinitions>
+           
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -34,7 +59,7 @@
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Celluaire : "/>
         <TextBlock Grid.Row="7" Grid.Column="0" Text="Identifiant : "/>
 
-        <Button  Grid.Row="0" Grid.Column="1" Content="Recherche" 
+        <Button  Grid.Row="0" Grid.Column="2" Content="Recherche" 
                     Command="{Binding SearchContactCommand}" 
                     CommandParameter="{Binding ElementName=txtCriteria,Path=Text}" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedContact.FirstName}"/>
@@ -43,6 +68,7 @@
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedContact.Phone}"/>
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedContact.Mobile}"/>
         <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedContact.ContactID}"/>
+
         </Grid>
     </DockPanel>
 </Window>
