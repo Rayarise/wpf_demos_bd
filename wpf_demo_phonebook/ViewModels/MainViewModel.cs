@@ -3,10 +3,13 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using wpf_demo_phonebook.ViewModels.Commands;
 
+
 namespace wpf_demo_phonebook.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
+
+        
 
         readonly ContactDataService contactDataService = new ContactDataService();
         private ObservableCollection<ContactModel> contacts;
@@ -72,6 +75,7 @@ namespace wpf_demo_phonebook.ViewModels
                     break;
                 case "name":
                     SelectedContact = PhoneBookBusiness.GetContactByName(input);
+                  
                     break;
                 default:
                     MessageBox.Show("Unkonwn search method");

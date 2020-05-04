@@ -5,11 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_demo_phonebook"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="300" Width="800">
+        Title="MainWindow" Height="400" Width="800">
     <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="_Fichiers">
+                    <MenuItem Header="_Ouvrir..."/>
+                    <MenuItem Header="_Sauvegarder"/>
+                    <MenuItem Header="_Fermer"/>
+                    <Separator/>
+                    
+                    <Separator/>
+                    
+                </MenuItem>
+                <MenuItem Header="_Édition">
+                    <MenuItem Header="Couper..."/>
+                    <MenuItem Header="Copier"/>
+                    <MenuItem Header="Coller"/>
+                </MenuItem>
+                <MenuItem Header="Affichage">
+                    <MenuItem Header="Fonction 1"/>
+                    <MenuItem Header="Fonction 2"/>
+                    <MenuItem Header="Fonction 3"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <ToolBar DockPanel.Dock="Top">
+            
+            <Button >
+                <Button  Grid.Row="0" Grid.Column="2" Content="+Contact" 
+                    Command="{Binding SearchContactCommand}" 
+                    CommandParameter="{Binding ElementName=txtCriteria,Path=Text}" />
+            </Button>
+            <Separator/>
+            <Button >
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Recherche : "/>
+                    <TextBox x:Name="txtFilter" HorizontalAlignment="Right" Width="150" TextChanged="txtFilter_TextChanged"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            
+              
+        </ToolBar>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
              
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -18,11 +59,11 @@
             </Grid.RowDefinitions>
 
 
-            <TextBlock Text="Liste des clients            " Grid.Column="0" Grid.Row="0"/>
+        
 
             <ListView Grid.Row="1" ItemsSource="{Binding Contacts}"
                           SelectedItem="{Binding SelectedContact}"
-                          x:Name="lvContact" Height="260px">
+                          x:Name="lvContact" Height="260px"  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Info}"/>
@@ -48,10 +89,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-            <TextBlock Text="Recherche : "/>
-            <TextBox x:Name="txtCriteria" HorizontalAlignment="Right" Width="150"/>
-        </StackPanel>
+      
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : "/>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Nom de famille : "/>
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Email : "/>
@@ -59,9 +97,7 @@
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Celluaire : "/>
         <TextBlock Grid.Row="7" Grid.Column="0" Text="Identifiant : "/>
 
-        <Button  Grid.Row="0" Grid.Column="2" Content="Recherche" 
-                    Command="{Binding SearchContactCommand}" 
-                    CommandParameter="{Binding ElementName=txtCriteria,Path=Text}" />
+       
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedContact.FirstName}"/>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedContact.LastName}"/>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedContact.Email}"/>
@@ -70,5 +106,6 @@
         <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedContact.ContactID}"/>
 
         </Grid>
+       
     </DockPanel>
 </Window>

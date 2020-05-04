@@ -14,5 +14,7 @@ namespace wpf_demo_phonebook
         public string Mobile { get; set; }
 
         public string Info => $"{LastName}, {FirstName}";
+
+        
     }
 }

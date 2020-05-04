@@ -27,7 +27,31 @@ namespace wpf_demo_phonebook
         public MainWindow()
         {
             InitializeComponent();
-         
+
+
+
+
         }
+        
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+               
+                return ((item as ContactModel).Info.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(lvContact.ItemsSource).Refresh();
+
+            
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvContact.ItemsSource);
+            view.Filter = UserFilter;
+            lvContact.SelectedIndex = 0;
+        }
+
+
     }
 }
