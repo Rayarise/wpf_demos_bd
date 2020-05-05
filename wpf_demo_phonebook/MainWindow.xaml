@@ -34,8 +34,8 @@
             
             <Button >
                 <Button  Grid.Row="0" Grid.Column="2" Content="+Contact" 
-                    Command="{Binding SearchContactCommand}" 
-                    CommandParameter="{Binding ElementName=txtCriteria,Path=Text}" />
+                    Command="{Binding  AddContactCommand}" 
+                    CommandParameter="{Binding SelectedCustomer}" />
             </Button>
             <Separator/>
             <Button >
@@ -87,7 +87,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
       
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : "/>
@@ -105,6 +106,16 @@
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedContact.Mobile}"/>
         <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedContact.ContactID}"/>
 
+
+            <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+                <Button   Content="Enregistrer" 
+                    Command="{Binding ModContactCommand}" 
+                     CommandParameter="{Binding SelectedContact}" />
+                <Separator/>
+                <Button   Content="Supprimer" 
+                    Command="{Binding DeleteContactCommand}" 
+                    CommandParameter="{Binding SelectedContact}" />
+            </StackPanel>
         </Grid>
        
     </DockPanel>
