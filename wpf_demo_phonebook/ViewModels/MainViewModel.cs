@@ -136,9 +136,13 @@ namespace wpf_demo_phonebook.ViewModels
             ContactModel temp = new ContactModel() { LastName = customer.LastName, FirstName = customer.FirstName, Email = customer.Email, Mobile = customer.Mobile, ContactID = customer.ContactID, Phone = customer.Phone   };
         
            Contacts.Remove(customer);
-           
-            Contacts.Insert(currentIndex,temp);
-            SelectedContact = temp;
+
+
+            if (currentIndex > 0)
+            {
+                Contacts.Insert(currentIndex, temp);
+                SelectedContact = temp;
+            }
         }
 
         private bool CanModContact(Object c)
