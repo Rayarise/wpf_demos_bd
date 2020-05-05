@@ -138,7 +138,7 @@ namespace wpf_demo_phonebook.ViewModels
            Contacts.Remove(customer);
 
 
-            if (currentIndex > 0)
+            if (currentIndex > -1)
             {
                 Contacts.Insert(currentIndex, temp);
                 SelectedContact = temp;
